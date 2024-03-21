@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Grocery Shopping App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: beige;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: #2ecc71;
+            padding: 20px;
+            text-align: center;
+            color: #ffffff;
+        }
+
+        nav {
+            margin-bottom: 20px;
+        }
+
+        .navbar-right {
+            float: right;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        nav ul li {
+            float: left;
+        }
+
+        nav ul li a {
+            display: block;
+            color: #ffffff;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        nav li:last-child {
+            margin-right: 0;
+            margin-left: auto;
+        }
+
+        nav ul li a:hover {
+            background-color: #2ecc71;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 0;
+        }
+
+        .category-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .category {
+            width: 200px;
+            height: 200px;
+            background-color: #f2f2f2;
+            border-radius: 4px;
+            margin: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .category:hover {
+            background-color: #2ecc71;
+            color: #ffffff;
+        }
+
+        .products {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            width: 200px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 10px;
+            margin: 10px;
+            float: left;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .card h3 {
+            margin: 10px 0;
+        }
+
+        .card p {
+            margin: 5px 0;
+        }
+
+        .card a.add-to-cart {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #2ecc71;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .card a.add-to-cart:hover {
+            background-color: #27ae60;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .CategoryName {
+            color: green;
+            transition: font-size 300ms ease;
+        }
+
+        .CategoryName:hover {
+            font-size: 30px;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        header p {
+            text-align: left;
+            font-size: 50px;
+            color: #E6E6FA;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1><b>GOCART</b></h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">Categories</a>
+                    <div class="dropdown-content">
+                        {% for category in categories %}
+                        <a href="#{{category[0]}}">{{ category[1] }}</a>
+                        {% endfor %}
+                    </div>
+                </li>
+                <li><a href="/cart">Cart</a></li>
+                <div class="navbar-right">
+                    <li><a href="/search">Search</a></li>
+                    <li><a href="/userlogin">User Login</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                </div>
+            </ul>
+        </nav>
+        <p><i>Welcome Back,{{name}}!!</i></p>
+    </header>
+
+    {% for category in categories %}
+    <h2 id="{{category[0]}}" class="CategoryName">{{ category[1] }}</h2>
+    <div class="products">
+        {% for product in products[category] %}
+        <div class="card">
+            <img src="{{ product[6] }}" alt="{{ product[1] }}">
+            <h3>{{ product[1] }}</h3>
+            <p>Manufacture Date: {{ product[2] }}</p>
+            <p>Expiry Date: {{ product[3] }}</p>
+            <p>Rate: {{ product[5] }} {{ product[9] }}</p>
+            {% if product[8]<=0 %} <p style="color:red">OUT OF STOCK</p>
+                {% else %}
+                <a href="/add/{{product[0]}}" class="add-to-cart">Add to Cart</a>
+                {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+</body>
+
+</html>

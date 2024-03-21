@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Thank You!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: beige;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: #2ecc71;
+            padding: 20px;
+            text-align: center;
+            color: #ffffff;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 0;
+        }
+
+        .message {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .buy-button {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .buy-button button {
+            padding: 10px 20px;
+            background-color: #2ecc71;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .buy-button button:hover {
+            background-color: #27ae60;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Thank You!</h1>
+    </header>
+
+    <div class="container">
+        <div class="message">
+            <p>Thank you for shopping with us,{{username}}!!</p>
+            <p>We hope to see you again soon.</p>
+        </div>
+    </div>
+
+    <div class="buy-button">
+        <a href="/"><button>Shop More</button></a>
+    </div>
+</body>
+
+</html>

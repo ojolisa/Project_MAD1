@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Add Product</title>
+    <style>
+        form {
+            width: 50%;
+            margin: 0 auto;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin-top: 10px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        label,
+        input {
+            display: block;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Edit Product</h1>
+    <form method="POST" action="/editprod">
+        <label for="product_id">Product ID:</label>
+        <input type="number" id="product_id" name="product_id" required><br><br>
+
+        <label for="product_name">Product Name:</label>
+        <input type="text" id="product_name" name="product_name"><br><br>
+
+        <label for="manufacture_date">Manufacture Date:</label>
+        <input type="date" id="manufacture_date" name="manufacture_date"><br><br>
+
+        <label for="expiry_date">Expiry Date:</label>
+        <input type="date" id="expiry_date" name="expiry_date"><br><br>
+
+        <label for="category_id">Category ID:</label>
+        <input type="text" id="category_id" name="category_id"><br><br>
+
+        <label for="rate">Rate:</label>
+        <input type="text" id="rate" name="rate"><br><br>
+
+        <label for="product_image">Product Image:</label>
+        <input type="text" id="product_image" name="product_image"><br><br>
+
+        <label for="quantity">Quantity:</label>
+        <input type="quantity" id="quantity" name="quantity"><br><br>
+
+        <input type="submit" value="Edit Product">
+    </form>
+</body>

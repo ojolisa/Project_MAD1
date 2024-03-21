@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: beige;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="date"] {
+            padding: 5px;
+            width: 100%;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #2ecc71;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #27ae60;
+        }
+
+        .card {
+            width: 200px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 10px;
+            margin: 10px;
+            float: left;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .card h3 {
+            margin: 10px 0;
+        }
+
+        .card p {
+            margin: 5px 0;
+        }
+
+        .card a.add-to-cart {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #2ecc71;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .card a.add-to-cart:hover {
+            background-color: #27ae60;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .CategoryName {
+            color: green;
+            transition: font-size 300ms ease;
+        }
+
+        .CategoryName:hover {
+            font-size: 30px;
+        }
+
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+        }
+
+        .navbar a {
+            float: left;
+            color: #ffffff;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            background-color: #2ecc71;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <a href="/">Home</a>
+    </div>
+
+    <div class="container">
+        <form method="POST" action="/search">
+            <label for="product_name">Product Name:</label>
+            <input type="text" id="product_name" name="product_name"><br><br>
+
+            <label for="manufacture_date">Manufacture Date:</label>
+            <input type="date" id="manufacture_date" name="manufacture_date"><br><br>
+
+            <label for="expiry_date">Expiry Date:</label>
+            <input type="date" id="expiry_date" name="expiry_date"><br><br>
+
+            <label for="category">Category:</label>
+            <input type="text" id="category" name="category"><br><br>
+
+            <label for="rate">Rate:</label>
+            <input type="text" id="rate" name="rate"><br><br>
+
+            <input type="submit" value="Search">
+        </form>
+        <br><br>
+        <div class="products">
+            {% for product in products %}
+            <div class="card">
+                <img src="{{ product[6] }}" alt="{{ product[1] }}">
+                <h3>{{ product[1] }}</h3>
+                <p>Manufacture Date: {{ product[2] }}</p>
+                <p>Expiry Date: {{ product[3] }}</p>
+                <p>Rate: {{ product[5] }} {{ product[9] }}</p>
+                {% if product[8]<=0 %} <p style="color:red">OUT OF STOCK</p>
+                    {% else %}
+                    <a href="/add/{{product[0]}}" class="add-to-cart">Add to Cart</a>
+                    {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+</body>
+
+</html>
