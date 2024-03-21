@@ -1,0 +1,197 @@
+openapi: 3.0.0
+info:
+  title: Grocery Store API
+  version: 1.0.0
+paths:
+  /:
+    get:
+      summary: Get home page
+      responses:
+        "200":
+          description: OK
+  /Inventory:
+    get:
+      summary: Get inventory page
+      responses:
+        "200":
+          description: OK
+  /add/{i}:
+    get:
+      summary: Add product to cart
+      parameters:
+        - in: path
+          name: i
+          schema:
+            type: integer
+          required: true
+      responses:
+        "302":
+          description: Redirect
+  /remove/{i}:
+    get:
+      summary: Remove product from cart
+      parameters:
+        - in: path
+          name: i
+          schema:
+            type: integer
+          required: true
+      responses:
+        "302":
+          description: Redirect
+  /cart:
+    get:
+      summary: Get cart page
+      responses:
+        "200":
+          description: OK
+  /thanks:
+    get:
+      summary: Get thanks page
+      responses:
+        "200":
+          description: OK
+  /search:
+    post:
+      summary: Search products
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                product_name:
+                  type: string
+                manufacture_date:
+                  type: string
+                expiry_date:
+                  type: string
+                category:
+                  type: string
+                rate:
+                  type: string
+      responses:
+        "200":
+          description: OK
+  /userregister:
+    post:
+      summary: User registration
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                userid:
+                  type: string
+                username:
+                  type: string
+                password:
+                  type: string
+      responses:
+        "302":
+          description: Redirect
+  /userlogin:
+    post:
+      summary: User login
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+      responses:
+        "302":
+          description: Redirect
+  /logout:
+    get:
+      summary: Log out from the session
+      responses:
+        "302":
+          description: Redirect
+  /adminlogin:
+    post:
+      summary: Admin login
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+      responses:
+        "302":
+          description: Redirect
+  /manage_inventory:
+    get:
+      summary: Get inventory management page
+      responses:
+        "200":
+          description: OK
+  /delete_category/{i}:
+    post:
+      summary: Delete category
+      parameters:
+        - in: path
+          name: i
+          schema:
+            type: integer
+          required: true
+      responses:
+        "302":
+          description: Redirect
+  /delete_product/{i}:
+    post:
+      summary: Delete product
+      parameters:
+        - in: path
+          name: i
+          schema:
+            type: integer
+          required: true
+      responses:
+        "302":
+          description: Redirect
+  /add_category:
+    post:
+      summary: Add category
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                category_name:
+                  type: string
+      responses:
+        "302":
+          description: Redirect
+  /add_product:
+    post:
+      summary: Add product
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                product_name:
+                  type: string
+                manufacture_date:
+                  type: string
+                expiry_date:
+                  type: string
+                category:
+                  type: string
+                rate:
+                  type: string
+      responses:
+        "302":
+          description: Redirect
